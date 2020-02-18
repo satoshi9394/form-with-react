@@ -26,7 +26,7 @@ class FormContainer extends Component {
         this.handleName = this.handleName.bind(this);
         this.handleAge = this.handleAge.bind(this);
         this.handleFormSubmmit = this.handleFormSubmmit.bind(this)
-
+        this.handleClear = this.handleClear.bind(this)
     }
 
     handleName(e){
@@ -71,12 +71,25 @@ class FormContainer extends Component {
         )
     }
 
+    handleClear(e){
+        e.preventDefault();
+        this.setState(()=>(
+                {
+                    newUser: {
+                        name:'',
+                        age: ''
+                    },
+                }
+            )
+        )
+    }
+
     render(){
         return(
             <div className="row">
                 <div className="col s8">
                 <p>Formulario React JS</p>
-                <form>
+                    <form>
                     <Input
                     name='name'
                     type='text'
@@ -95,7 +108,11 @@ class FormContainer extends Component {
                         action={this.handleFormSubmmit}
                         title='Enviar'
                     />
-                </form>
+                    <Button
+                        action={this.handleClear}
+                        title='Borrar'
+                    />
+                    </form>
                 </div>
                 <div className='col s4'>
                     <PreviewDate
