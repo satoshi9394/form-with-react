@@ -65,7 +65,6 @@ class FormContainer extends Component {
                         name: '',
                         age:''
                         }
-
                 }
             )
         )
