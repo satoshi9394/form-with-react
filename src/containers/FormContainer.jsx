@@ -14,22 +14,17 @@ const INITIAL_STATE = [
 
 
 class FormContainer extends Component {
-    constructor() {
-        super();
-        this.state ={
+// state refactorizar     
+    state ={
             newUser: {
                 name: '',
                 age: ''
             },
             usersSaved: INITIAL_STATE    
-        } 
-        this.handleName = this.handleName.bind(this);
-        this.handleAge = this.handleAge.bind(this);
-        this.handleFormSubmmit = this.handleFormSubmmit.bind(this)
-        this.handleClear = this.handleClear.bind(this)
-    }
+    } 
 
-    handleName(e){
+
+    handleName = (e)=>{
         let value = e.target.value
         this.setState(
           prevState => ({
@@ -41,7 +36,7 @@ class FormContainer extends Component {
         );
     }
 
-    handleAge(e){
+    handleAge = (e) =>{
         let value = e.target.value
         this.setState(
           prevState => ({
@@ -53,7 +48,7 @@ class FormContainer extends Component {
         );
     }
 
-    handleFormSubmmit(e){
+    handleFormSubmmit = (e) =>{
         e.preventDefault();
         let userData = this.state.newUser;
         this.setState(prevState=>(
@@ -70,7 +65,7 @@ class FormContainer extends Component {
         )
     }
 
-    handleClear(e){
+    handleClear =(e) => {
         e.preventDefault();
         this.setState(()=>(
                 {
@@ -92,6 +87,7 @@ class FormContainer extends Component {
                     <Input
                     name='name'
                     type='text'
+                    title='Nombre'
                     value={this.state.newUser.name}
                     placeholder='ingresa tu nombre'
                     handleChange={this.handleName}
@@ -99,6 +95,7 @@ class FormContainer extends Component {
                     <Input
                     name='ages'
                     type='number'
+                    title='Edad'
                     value={this.state.newUser.age}
                     placeholder='Ingresa tu edad'
                     handleChange={this.handleAge}
