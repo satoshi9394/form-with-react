@@ -4,8 +4,8 @@ import React from 'react'
 const PreviewDate = props => {
     const users = props.data.map((user, idx) => (
         <div key={idx}>
-            <p>{user.name}</p>
-            <p>{user.age}</p>
+            <p>Nombre: {user.name}</p>
+            <p>Edad: {user.age} años</p>
         </div>
     ));
 

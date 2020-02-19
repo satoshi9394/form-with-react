@@ -18,35 +18,25 @@ class FormContainer extends Component {
     state ={
             newUser: {
                 name: '',
-                age: ''
+                age: '',
+                userName: '',
             },
             usersSaved: INITIAL_STATE    
     } 
 
-
-    handleName = (e)=>{
-        let value = e.target.value
-        this.setState(
-          prevState => ({
-              newUser: {
-                ...prevState.newUser,
-                name: value
-            }
-          })          
-        );
+    componentDidMount() {
+        const url = 'https://jsonplaceholder.typicode.com/users'
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                this.setState({
+                    usersSaved: data
+                });
+            });
     }
 
-    handleAge = (e) =>{
-        let value = e.target.value
-        this.setState(
-          prevState => ({
-              newUser: {
-                ...prevState.newUser,
-                age: value
-            }
-          })          
-        );
-    }
+
 
     handleFormSubmmit = (e) =>{
         e.preventDefault();
@@ -78,10 +68,21 @@ class FormContainer extends Component {
         )
     }
 
+    handleInput = (e) => {
+        let value = e.target.value;
+        let name = e.target.name;
+        this.setState(
+            prevState => ({
+                newUser:{...prevState.newUser,
+                [name]: value,}
+            })
+        )
+    }
+
     render(){
         return(
             <div className="row">
-                <div className="col s8">
+                <div className="col s7">
                 <p>Formulario React JS</p>
                     <form>
                     <Input
@@ -90,7 +91,7 @@ class FormContainer extends Component {
                     title='Nombre'
                     value={this.state.newUser.name}
                     placeholder='ingresa tu nombre'
-                    handleChange={this.handleName}
+                    handleChange={this.handleInput}
                     />
                     <Input
                     name='ages'
@@ -98,7 +99,15 @@ class FormContainer extends Component {
                     title='Edad'
                     value={this.state.newUser.age}
                     placeholder='Ingresa tu edad'
-                    handleChange={this.handleAge}
+                    handleChange={this.handleInput}
+                    />
+                    <Input
+                    name='userName'
+                    type='text'
+                    title='Nombre de usuario'
+                    value={this.state.newUser.userName}
+                    placeholder='Ingresa tu edad'
+                    handleChange={this.handleInput}
                     />
                     <Button
                         action={this.handleFormSubmmit}
@@ -110,7 +119,7 @@ class FormContainer extends Component {
                     />
                     </form>
                 </div>
-                <div className='col s4'>
+                <div className='col s5'>
                     <PreviewDate
                     data={this.state.usersSaved}
                     />
