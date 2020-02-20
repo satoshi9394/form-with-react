@@ -18,8 +18,8 @@ class FormContainer extends Component {
     state ={
             newUser: {
                 name: '',
-                age: '',
-                userName: '',
+                phone: '',
+                username: '',
             },
             usersSaved: INITIAL_STATE    
     } 
@@ -82,7 +82,7 @@ class FormContainer extends Component {
     render(){
         return(
             <div className="row">
-                <div className="col s7">
+                <div className="col s6">
                 <p>Formulario React JS</p>
                     <form>
                     <Input
@@ -94,19 +94,19 @@ class FormContainer extends Component {
                     handleChange={this.handleInput}
                     />
                     <Input
-                    name='ages'
+                    name='phone'
                     type='number'
                     title='Edad'
-                    value={this.state.newUser.age}
-                    placeholder='Ingresa tu edad'
+                    value={this.state.newUser.phone}
+                    placeholder='Ingresa tu numero'
                     handleChange={this.handleInput}
                     />
                     <Input
-                    name='userName'
+                    name='username'
                     type='text'
                     title='Nombre de usuario'
-                    value={this.state.newUser.userName}
-                    placeholder='Ingresa tu edad'
+                    value={this.state.newUser.username}
+                    placeholder='Nombre de usuario'
                     handleChange={this.handleInput}
                     />
                     <Button
@@ -119,7 +119,7 @@ class FormContainer extends Component {
                     />
                     </form>
                 </div>
-                <div className='col s5'>
+                <div className='col s6'>
                     <PreviewDate
                     data={this.state.usersSaved}
                     />
